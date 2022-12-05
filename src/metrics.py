@@ -36,3 +36,26 @@ def precision(predicted_labels: list, true_labels: pd.DataFrame, which_label: in
         return t_sum(logical_and(pred_which, true_which)) / denominator
     else:
         return 0.
+
+
+# Recall is True Positives / All Positive Labels
+def recall(predicted_labels: list, true_labels: pd.DataFrame, which_label: int = 1):
+    pred_which = np.array([pred == which_label for pred in predicted_labels])
+    true_which = np.array([lab == which_label for lab in true_labels])
+    denominator = t_sum(true_which)
+
+    if denominator:
+        return t_sum(logical_and(pred_which, true_which)) / denominator
+    else:
+        return 0.
+
+
+# F1 score = the harmonic mean of precision and recall
+def f1_score(predicted_labels: list, true_labels: pd.DataFrame, which_label: int):
+    precision_value = precision(predicted_labels, true_labels, which_label=which_label)
+    recall_value = recall(predicted_labels, true_labels, which_label=which_label)
+
+    if precision_value and recall_value:
+        return 2 * precision_value * recall_value / (precision_value + recall_value)
+    else:
+        return 0.
