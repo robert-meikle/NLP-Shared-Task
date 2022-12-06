@@ -27,9 +27,9 @@ labels_type_dict = {
 }
 
 
-def load_training_data():
-    args_path = "../data/arguments-training.tsv"
-    labels_path = "../data/labels-training.tsv"
+def load_training_data(args: str, labels: str):
+    args_path = args
+    labels_path = labels
 
     arguments = []
     with open(args_path, "r", encoding="utf-8") as f:
