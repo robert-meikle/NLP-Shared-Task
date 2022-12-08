@@ -1,3 +1,5 @@
+embeddings/glove.6B.*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

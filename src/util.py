@@ -27,14 +27,14 @@ labels_type_dict = {
 }
 
 
-def load_training_data():
-    args_path = "../data/arguments-training.tsv"
-    labels_path = "../data/labels-training.tsv"
+def load_training_data(args: str, labels: str):
+    args_path = args
+    labels_path = labels
 
     arguments = []
     with open(args_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
-        print(lines[0])
+        # print(lines[0])
         # skip reading header
         for line in lines[1:]:
             temp = []
@@ -60,7 +60,7 @@ def load_training_data():
         arguments, columns=["Argument ID", "Conclusion", "Stance", "Premise"]
     )
     arguments = arguments.astype(args_type_dict)
-    print(arguments.head(10))
+    # print(arguments.head(10))
 
     labels = []
     with open(labels_path, "r", encoding="utf-8") as f:
@@ -95,6 +95,6 @@ def load_training_data():
             "Universalism: objectivity",
         ],
     ).astype(labels_type_dict)
-    print(labels.head(10))
+    # print(labels.head(10))
 
     return arguments, labels
