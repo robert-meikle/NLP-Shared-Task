@@ -34,7 +34,7 @@ def load_training_data(args: str, labels: str):
     arguments = []
     with open(args_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
-        print(lines[0])
+        #print(lines[0])
         # skip reading header
         for line in lines[1:]:
             temp = []
@@ -44,6 +44,8 @@ def load_training_data(args: str, labels: str):
                 temp = line.split("against")
             elif "in favor of" in line:
                 temp = line.split("in favor of")
+            elif "in favour of" in line:
+                temp = line.split("in favour of")
             else:
                 print(f"unrecognized stance for line '{line}', skipping.")
                 continue
@@ -60,7 +62,7 @@ def load_training_data(args: str, labels: str):
         arguments, columns=["Argument ID", "Conclusion", "Stance", "Premise"]
     )
     arguments = arguments.astype(args_type_dict)
-    print(arguments.head(10))
+    print(arguments["Stance"].head(10))
 
     labels = []
     with open(labels_path, "r", encoding="utf-8") as f:
@@ -95,6 +97,6 @@ def load_training_data(args: str, labels: str):
             "Universalism: objectivity",
         ],
     ).astype(labels_type_dict)
-    print(labels.head(10))
+    #print(labels.head(10))
 
     return arguments, labels
