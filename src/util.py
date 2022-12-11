@@ -44,6 +44,8 @@ def load_training_data(args: str, labels: str):
                 temp = line.split("against")
             elif "in favor of" in line:
                 temp = line.split("in favor of")
+            elif "in favour of" in line:
+                temp = line.split("in favour of")
             else:
                 print(f"unrecognized stance for line '{line}', skipping.")
                 continue
